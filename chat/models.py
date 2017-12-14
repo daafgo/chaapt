@@ -8,11 +8,13 @@ from django.contrib.auth.models import User
 class Conversacion(models.Model):
     emisor = models.ForeignKey(User,related_name='emisor') 
     receptor = models.ForeignKey(User,related_name='receptor')
-    
+    def __str__(self):
+        return str(self.id)
     
     
 class Mensaje(models.Model):
     texto = models.CharField(max_length=1000)
     conversacion = models.ForeignKey(Conversacion)
+    usuario = models.ForeignKey(User)
 
     

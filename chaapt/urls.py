@@ -23,4 +23,6 @@ urlpatterns = [
 url(r'^$', chat.views.home, name='Home'),
 url(r'^(?P<user_id>\d+)/$',chat.views.userchats),
 url(r'^(?P<user_id>\d+)/(?P<chat_id>\d+)/$',chat.views.chatv),
+url(r'^new/(?P<user_id>\d+)/(?P<rec_id>\d+)/$',chat.views.newchat),
+
 ]

@@ -5,17 +5,18 @@
                 <ul class="collection with-header">
                 <li class="collection-header"><h4>Conversaciones</h4></li>
                 <!-- Listamos todas las conversaciones abiertas en las que aparece, y el llistado de los usuarios con los que todavia no tiene niguna-->
-                 {% for ch in chats%}
-                <li class="collection-item"> <a href="./{{ch.id}}" target="blank">{{ch.username}}</a></li>
+                 {% for usu,ch in chats.items%}
+                 
+                <li class="collection-item"> <a href="./{{ch}}" target="blank">{{usu}}</a></li>
                  {%endfor%}
                  </ul>
                  </div>
                   <div class="col s6">
                 <ul class="collection with-header">
                 <li class="collection-header"><h4>Usuarios</h4></li>
-                <!-- Listamos todas las conversaciones abiertas en las que aparece, y el llistado de los usuarios con los que todavia no tiene niguna-->
+                <!-- Listamos todas las conversacion el listado de los usuarios con los que todavia no tiene niguna-->
                  {% for nc in nchats%}
-                <li class="collection-item"> <a href="/{{nc.id}}" target="blank"> {{nc.username}}</a></li>
+                <li class="collection-item"> <a href="/new/{{usuario.id}}/{{nc.id}}/" target="blank"> {{nc.username}}</a></li>
                  {%endfor%}
                  </ul>
                  </div>
