@@ -7,7 +7,11 @@
                 <!-- Listamos todas las conversaciones abiertas en las que aparece, y el llistado de los usuarios con los que todavia no tiene niguna-->
                  {% for usu,ch in chats.items%}
                  
-                <li class="collection-item"> <a href="./{{ch}}" target="blank">{{usu}}</a></li>
+                <li class="collection-item col s12"><img class="circle miniatura" src="/media/{{usu.photo}}"><a href="./{{ch}}" target="blank">{{usu.username}}</a> <div class="col s10">
+              <span class="black-text">
+                This is a square image. Add the "circle" class to it to make it appear circular.
+              </span>
+            </div></li>
                  {%endfor%}
                  </ul>
                  </div>

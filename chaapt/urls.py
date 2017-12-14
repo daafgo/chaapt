@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: latin-1 -*-
 """chaapt URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -14,10 +16,12 @@ Including another URLconf
     2. Import the include() function: from django.conf.urls import url, include
     3. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
+
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf import settings
 import chat.views
-
+import usuarios.views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 url(r'^$', chat.views.home, name='Home'),
@@ -25,4 +29,10 @@ url(r'^(?P<user_id>\d+)/$',chat.views.userchats),
 url(r'^(?P<user_id>\d+)/(?P<chat_id>\d+)/$',chat.views.chatv),
 url(r'^new/(?P<user_id>\d+)/(?P<rec_id>\d+)/$',chat.views.newchat),
 
+#urls modulo usuarios
+url(r'^profile/(?P<user_id>\d+)/$',usuarios.views.profile),
+#añadimos la url para servir las imagenes
+url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': settings.MEDIA_ROOT,
+    }),
 ]

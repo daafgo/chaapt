@@ -1,13 +1,13 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.contrib.auth.models import User
+from usuarios.models import CustomUser
 # Create your models here.
 
 #clase que almacena la conversacion
 class Conversacion(models.Model):
-    emisor = models.ForeignKey(User,related_name='emisor') 
-    receptor = models.ForeignKey(User,related_name='receptor')
+    emisor = models.ForeignKey(CustomUser,related_name='emisor') 
+    receptor = models.ForeignKey(CustomUser,related_name='receptor')
     def __str__(self):
         return str(self.id)
     
@@ -15,6 +15,6 @@ class Conversacion(models.Model):
 class Mensaje(models.Model):
     texto = models.CharField(max_length=1000)
     conversacion = models.ForeignKey(Conversacion)
-    usuario = models.ForeignKey(User)
+    usuario = models.ForeignKey(CustomUser)
 
     
