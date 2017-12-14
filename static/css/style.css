@@ -1,4 +1,7 @@
 .miniatura {
     height: 50px;
     width: 50px;
+    float: left;
+    padding: 2px;
+    margin: 8px;
 }

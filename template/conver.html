@@ -2,7 +2,7 @@
 {% block content %}
             <div class="row">
              
-      <div class="col s12 blue lighten-5"><span class="flow-text">Conversacion con {{usurec}}</span></div></div>
+      <div class="col s12 blue lighten-5"><div class="valign-wrapper"><img class="circle miniatura" src="/media/{{usurec.photo}}"><h3 class="flow-text">Conversacion con {{usurec}}</h3></div></div></div>
     <div class="row indigo lighten-5 conntenedor" style="height:70vh;">
     {% for ms in msgs%}
       {%if ms.usuario == usuario%}         
