@@ -68,4 +68,4 @@ def newchat(request,user_id,rec_id):
         )
     nueva_conver.save()
     
-    return redirect('/'+user_id+'/'+str(nueva_conver.id)  )
+    return redirect('/'+user_id+'/'+str(nueva_conver.id))
