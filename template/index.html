@@ -4,6 +4,7 @@
                 <div class="col s6">
                 <ul class="collection with-header">
                 <li class="collection-header"><h4>Usuarios</h4></li>
+                <!-- Listamos a todos los usuarios y añadimos un enlace a su perfil-->
                  {% for cl in users%}
                 <li class="collection-item"> <a href="/{{cl.id}}" target="blank"> {{cl.username}}</a></li>
          
