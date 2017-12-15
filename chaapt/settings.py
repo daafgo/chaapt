@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'chat',
     'usuarios',
+    'emoji',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -128,5 +129,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, './staticfiles/')
 STATICFILES_DIRS = (
 os.path.join(BASE_DIR, "static"),)
 
-
+#Extendemos el usuario a custom user
 AUTH_USER_MODEL='usuarios.CustomUser'
+
+
+#añadimos la configuracion de emojis
+EMOJI_IMG_TAG='<img src="{0}" alt="{1}" title="{2}" class="emoji">'
+EMOJI_ALT_AS_UNICODE = True
+EMOJI_REPLACE_HTML_ENTITIES	= True

@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from usuarios.models import CustomUser
 from .forms import *
 from .models import *
+from emoji import Emoji
 # Vista encargada de gestionar la visualizacion del home dee la app
 def home(request):
     users = CustomUser.objects.all()
@@ -58,7 +59,16 @@ def chatv(request,user_id,chat_id):
         usurec=conver.receptor
     mensajes = Mensaje.objects.filter(conversacion=conver)
     form=MensajeForm()
-    return render(request,"conver.html",{'usuario':User,'usurec':usurec,'msgs':mensajes,'CustomUser':CustomUser,'form':form})
+    #cargamos la lista de emojis
+    emojis=[]
+    for i, emoji in enumerate(sorted(Emoji.keys())):
+        if i >= 1000:
+            break
+        emojis.append(':{0}:'.format(emoji))
+
+
+    
+    return render(request,"conver.html",{'emojis':emojis,'usuario':User,'usurec':usurec,'msgs':mensajes,'CustomUser':CustomUser,'form':form})
     
     #vista que crea la conversacion y nos redirige a ella
 def newchat(request,user_id,rec_id):

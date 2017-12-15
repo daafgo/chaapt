@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load emoji_tags %}
 {% block content %}
             <div class="row">
              
@@ -6,9 +7,9 @@
     <div class="row indigo lighten-5 conntenedor" style="height:70vh;">
     {% for ms in msgs%}
       {%if ms.usuario == usuario%}         
-      <div class="col s12  right-align"><span class="flow-text teal lighten-4 z-depth-2 ">{{ms.texto}}</span></div> 
+      <div class="col s12  right-align"><span class="flow-text teal lighten-4 z-depth-2 ">{{ms.texto|emoji_replace}}</span></div> 
       {%else%}
-      <div class="col s12"><span class="flow-text z-depth-2">{{ms.texto}}</span></div> 
+      <div class="col s12"><span class="flow-text z-depth-2">{{ms.texto|emoji_replace}}</span></div> 
       
      {%endif%}
       {%endfor%}
@@ -16,9 +17,23 @@
  <div class="row"><form action="{{request.url}}" method="post">
     {% csrf_token %}
     {{ form }}
+    <a class="waves-effect waves-light btn modal-trigger" href="#modal1"><i class="material-icons">face</i></a>
+    
     <button class="btn rounded waves-effect waves-light" type="submit" name="action">
         <i class="material-icons right">send</i>
       </button>
 </form></div>
- 
+
+<!-- Modal Structure -->
+  <div id="modal1" class="modal ">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      {% for emoji in emojis %}
+           <div class="emoticono" id="{{emoji}}"> {{ emoji|emoji_replace }} </div>
+    {% endfor %}
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
 {% endblock%}
