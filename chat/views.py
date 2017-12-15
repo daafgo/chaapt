@@ -52,7 +52,7 @@ def chatv(request,user_id,chat_id):
     
     #usuario que los recibe
     
-    if CustomUser==conver.receptor:
+    if User==conver.receptor:
         usurec=conver.emisor
     else:
         usurec=conver.receptor
