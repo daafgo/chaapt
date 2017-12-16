@@ -40,17 +40,31 @@ def chatv(request,user_id,chat_id):
     #usuario que va enviar los mensajes
     User =  CustomUser.objects.get(id=user_id)
     if request.method=='POST':
-        form = MensajeForm(request.POST)
+        form = MensajeForm(request.POST, request.FILES)
+        print(request.FILES)
+        if request.FILES :
+            if form.is_valid():
+               #añadimos el mensaje a la conversación
+                   
+                nuevo_mensaje=Mensaje.objects.create(
+                   texto=form.cleaned_data['texto'],
+                   conversacion=conver,
+                   usuario=User,
+                   fichero = request.FILES['file']
+                   )
+                nuevo_mensaje.save()
+        else:
         # Comprobamos que sea correcto:
-        if form.is_valid():
-           #añadimos el mensaje a la conversación
-            nuevo_mensaje=Mensaje.objects.create(
-               texto=form.cleaned_data['texto'],
-               conversacion=conver,
-               usuario=User
-               )
-            nuevo_mensaje.save()
-    
+            if form.is_valid():
+               #añadimos el mensaje a la conversación
+                nuevo_mensaje=Mensaje.objects.create(
+                   texto=form.cleaned_data['texto'],
+                   conversacion=conver,
+                   usuario=User
+                  # fichero = request.FILES['file']
+                   )
+                nuevo_mensaje.save()
+        # print (form.errors)
     #usuario que los recibe
     
     if User==conver.receptor:
@@ -62,7 +76,7 @@ def chatv(request,user_id,chat_id):
     #cargamos la lista de emojis
     emojis=[]
     for i, emoji in enumerate(sorted(Emoji.keys())):
-        if i >= 1000:
+        if i >= 2:
             break
         emojis.append(':{0}:'.format(emoji))
 

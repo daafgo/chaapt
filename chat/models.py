@@ -16,5 +16,6 @@ class Mensaje(models.Model):
     texto = models.CharField(max_length=1000)
     conversacion = models.ForeignKey(Conversacion)
     usuario = models.ForeignKey(CustomUser)
-
+    fichero = models.FileField(upload_to = 'static/documents',blank=True,null=True)
+    #anadimos ficheros a los mensajes
     

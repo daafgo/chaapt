@@ -3,7 +3,7 @@ from .models import *
 # Register your models here.
 class MensajeAdmin(admin.ModelAdmin):
     list_filter = ["conversacion"]
-    list_display = ["conversacion"]
+    list_display = ["conversacion","texto","fichero"]
 
 
 admin.site.register(Mensaje, MensajeAdmin)

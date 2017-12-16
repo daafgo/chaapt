@@ -1,20 +1,21 @@
 {% extends "base.html" %}
 {% load emoji_tags %}
+{% load mimetypes %}
 {% block content %}
             <div class="row">
              
       <div class="col s12 blue lighten-5"><div class="valign-wrapper"><img class="circle miniatura" src="/media/{{usurec.photo}}"><h3 class="flow-text">Conversacion con <a href="/profile/{{usurec.id}}">{{usurec}}</a></h3> </div></div></div>
-    <div class="row indigo lighten-5 conntenedor" style="height:70vh;">
+    <div class="row indigo lighten-5 conntenedor" style="height:70vh; overflow-y: scroll;">
     {% for ms in msgs%}
-      {%if ms.usuario == usuario%}         
-      <div class="col s12  right-align"><span class="flow-text teal lighten-4 z-depth-2 ">{{ms.texto|emoji_replace}}</span></div> 
+      {%if ms.usuario == usuario%}    
+      <div class="col s12  right-align"><div class="flow-text teal offset-s8 col s4 lighten-4 z-depth-2">{%if ms.fichero != null %}{% autoescape off %}{{ms.fichero|filetype}}{% endautoescape%} {%endif%}<span class=" ">{{ms.texto|emoji_replace}}</span></div></div> 
       {%else%}
-      <div class="col s12"><span class="flow-text z-depth-2">{{ms.texto|emoji_replace}}</span></div> 
+      <div class="col s12"><div class="flow-text col s4 z-depth-2">{%if ms.fichero != null %}{% autoescape off %}{{ms.fichero|filetype}}{% endautoescape%} {%endif%}<span class=" ">{{ms.texto|emoji_replace}}</span></div> </div>
       
      {%endif%}
       {%endfor%}
  </div>
- <div class="row"><form action="{{request.url}}" method="post">
+ <div class="row"><form enctype="multipart/form-data" action="{{request.url}}" method="post">
     {% csrf_token %}
     {{ form }}
     <a class="waves-effect waves-light btn modal-trigger" href="#modal1"><i class="material-icons">face</i></a>
