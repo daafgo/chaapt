@@ -73,10 +73,10 @@ def chatv(request,user_id,chat_id):
         usurec=conver.receptor
     mensajes = Mensaje.objects.filter(conversacion=conver)
     form=MensajeForm()
-    #cargamos la lista de emojis
+    #cargamos la lista de emojis le ponemos un limite para que no tarde mucho
     emojis=[]
     for i, emoji in enumerate(sorted(Emoji.keys())):
-        if i >= 2:
+        if i >= 1000:
             break
         emojis.append(':{0}:'.format(emoji))
 
